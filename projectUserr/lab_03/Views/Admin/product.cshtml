@@ -1,0 +1,54 @@
+﻿@model List<lab_03.Models.movie>
+@{
+    ViewBag.Title = "Dashboard";
+}
+<style>
+    img {
+        width: 80px;
+        height: 100px;
+    }
+</style>
+<h2>Products</h2>
+
+
+<a href="~/Admin/AddProduct">Add New</a>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">ID</th>
+            <th scope="col" style="width:130px">ToyName</th>
+            <th scope="col" style="width:400px">ToyDescription</th>
+            <th scope="col">ToyRate</th>
+            <th scope="col">ToyImgPath</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var iteam in Model)
+        {
+            <tr>
+                <td scope="row">@iteam.ID</td>
+                <td>@iteam.name</td>
+                <td>@iteam.releaseDate</td>
+                <td>@iteam.price</td>
+                <td> <img src="~/Content/images/@iteam.imgMovie" /> </td>
+              
+            </tr>
+
+        }
+        <tr>
+
+            <th scope="row">3</th>
+            <td>Pepsi</td>
+            <td>Pepsi</td>
+            <td>10000</td>
+            <td><img src="~/Content/images/1.jfif" /></td>
+            <td>
+                <a href="#">Details</a> |
+                <a href="#">Edit</a> |
+                <a href="#">Delete</a>
+            </td>
+        </tr>
+    </tbody>
+</table>
+

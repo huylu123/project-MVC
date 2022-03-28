@@ -1,0 +1,6 @@
+D:\TTTThi\WEBAPP_MVC\lab_03\ReviewCSharp\bin\Debug\ReviewCSharp.exe.config
+D:\TTTThi\WEBAPP_MVC\lab_03\ReviewCSharp\bin\Debug\ReviewCSharp.exe
+D:\TTTThi\WEBAPP_MVC\lab_03\ReviewCSharp\bin\Debug\ReviewCSharp.pdb
+D:\TTTThi\WEBAPP_MVC\lab_03\ReviewCSharp\obj\Debug\ReviewCSharp.csproj.CoreCompileInputs.cache
+D:\TTTThi\WEBAPP_MVC\lab_03\ReviewCSharp\obj\Debug\ReviewCSharp.exe
+D:\TTTThi\WEBAPP_MVC\lab_03\ReviewCSharp\obj\Debug\ReviewCSharp.pdb

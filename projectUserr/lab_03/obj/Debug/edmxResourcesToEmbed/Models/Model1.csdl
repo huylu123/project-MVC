@@ -1,0 +1,243 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="projectModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="address">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="aName" Type="String" MaxLength="30" FixedLength="true" Unicode="true" />
+    <NavigationProperty Name="movies" Relationship="Self.FK_movie_address" FromRole="address" ToRole="movie" />
+    <NavigationProperty Name="tickets" Relationship="Self.FK_ticket_address1" FromRole="address" ToRole="ticket" />
+  </EntityType>
+  <EntityType Name="cinemar">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="cName" Type="String" MaxLength="40" FixedLength="true" Unicode="true" />
+    <Property Name="IDaddress" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <NavigationProperty Name="movies" Relationship="Self.FK_movie_cinemar" FromRole="cinemar" ToRole="movie" />
+    <NavigationProperty Name="tickets" Relationship="Self.FK_ticket_cinemar" FromRole="cinemar" ToRole="ticket" />
+  </EntityType>
+  <EntityType Name="customer">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="fname" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="lname" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="email" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="phoneNumber" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="passwork" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+  </EntityType>
+  <EntityType Name="manager">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="fname" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="lname" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="email" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="phoneNumber" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+  </EntityType>
+  <EntityType Name="movie">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="name" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+    <Property Name="releaseDate" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="price" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="des" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+    <Property Name="imgMovie" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+    <Property Name="mIdAdress" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="mIdCinemar" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <NavigationProperty Name="address" Relationship="Self.FK_movie_address" FromRole="movie" ToRole="address" />
+    <NavigationProperty Name="cinemar" Relationship="Self.FK_movie_cinemar" FromRole="movie" ToRole="cinemar" />
+    <NavigationProperty Name="tickets" Relationship="Self.FK_ticket_movie" FromRole="movie" ToRole="ticket" />
+  </EntityType>
+  <EntityType Name="Order">
+    <Key>
+      <PropertyRef Name="IDOrder" />
+    </Key>
+    <Property Name="IDOrder" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="OderDate" Type="DateTime" Precision="3" />
+    <Property Name="Description" Type="String" MaxLength="30" FixedLength="true" Unicode="true" />
+    <Property Name="CodeCus" Type="Int32" />
+    <NavigationProperty Name="tickets" Relationship="Self.FK_ticket_Order" FromRole="Order" ToRole="ticket" />
+  </EntityType>
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="ticket">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="date" Type="DateTime" Precision="3" />
+    <Property Name="IDaddress" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="IDCustomer" Type="Int32" />
+    <Property Name="IDMovie" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="IDCinemar" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="IDOrder" Type="Int32" />
+    <Property Name="price" Type="Decimal" Precision="18" Scale="0" />
+    <NavigationProperty Name="address" Relationship="Self.FK_ticket_address1" FromRole="ticket" ToRole="address" />
+    <NavigationProperty Name="cinemar" Relationship="Self.FK_ticket_cinemar" FromRole="ticket" ToRole="cinemar" />
+    <NavigationProperty Name="movie" Relationship="Self.FK_ticket_movie" FromRole="ticket" ToRole="movie" />
+    <NavigationProperty Name="Order" Relationship="Self.FK_ticket_Order" FromRole="ticket" ToRole="Order" />
+  </EntityType>
+  <Association Name="FK_movie_address">
+    <End Role="address" Type="Self.address" Multiplicity="0..1" />
+    <End Role="movie" Type="Self.movie" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="address">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="movie">
+        <PropertyRef Name="mIdAdress" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ticket_address1">
+    <End Role="address" Type="Self.address" Multiplicity="0..1" />
+    <End Role="ticket" Type="Self.ticket" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="address">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="ticket">
+        <PropertyRef Name="IDaddress" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_movie_cinemar">
+    <End Role="cinemar" Type="Self.cinemar" Multiplicity="0..1" />
+    <End Role="movie" Type="Self.movie" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="cinemar">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="movie">
+        <PropertyRef Name="mIdCinemar" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ticket_cinemar">
+    <End Role="cinemar" Type="Self.cinemar" Multiplicity="0..1" />
+    <End Role="ticket" Type="Self.ticket" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="cinemar">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="ticket">
+        <PropertyRef Name="IDCinemar" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ticket_movie">
+    <End Role="movie" Type="Self.movie" Multiplicity="0..1" />
+    <End Role="ticket" Type="Self.ticket" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="movie">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="ticket">
+        <PropertyRef Name="IDMovie" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ticket_Order">
+    <End Role="Order" Type="Self.Order" Multiplicity="0..1" />
+    <End Role="ticket" Type="Self.ticket" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Order">
+        <PropertyRef Name="IDOrder" />
+      </Principal>
+      <Dependent Role="ticket">
+        <PropertyRef Name="IDOrder" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="projectEntities1" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="addresses" EntityType="Self.address" />
+    <EntitySet Name="cinemars" EntityType="Self.cinemar" />
+    <EntitySet Name="customers" EntityType="Self.customer" />
+    <EntitySet Name="managers" EntityType="Self.manager" />
+    <EntitySet Name="movies" EntityType="Self.movie" />
+    <EntitySet Name="Orders" EntityType="Self.Order" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+    <EntitySet Name="tickets" EntityType="Self.ticket" />
+    <AssociationSet Name="FK_movie_address" Association="Self.FK_movie_address">
+      <End Role="address" EntitySet="addresses" />
+      <End Role="movie" EntitySet="movies" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ticket_address1" Association="Self.FK_ticket_address1">
+      <End Role="address" EntitySet="addresses" />
+      <End Role="ticket" EntitySet="tickets" />
+    </AssociationSet>
+    <AssociationSet Name="FK_movie_cinemar" Association="Self.FK_movie_cinemar">
+      <End Role="cinemar" EntitySet="cinemars" />
+      <End Role="movie" EntitySet="movies" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ticket_cinemar" Association="Self.FK_ticket_cinemar">
+      <End Role="cinemar" EntitySet="cinemars" />
+      <End Role="ticket" EntitySet="tickets" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ticket_movie" Association="Self.FK_ticket_movie">
+      <End Role="movie" EntitySet="movies" />
+      <End Role="ticket" EntitySet="tickets" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ticket_Order" Association="Self.FK_ticket_Order">
+      <End Role="Order" EntitySet="Orders" />
+      <End Role="ticket" EntitySet="tickets" />
+    </AssociationSet>
+    <FunctionImport Name="sp_alterdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_creatediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_dropdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(projectModel.sp_helpdiagramdefinition_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(projectModel.sp_helpdiagrams_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_renamediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="new_diagramname" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_upgraddiagrams" />
+  </EntityContainer>
+  <ComplexType Name="sp_helpdiagramdefinition_Result">
+    <Property Type="Int32" Name="version" Nullable="true" />
+    <Property Type="Binary" Name="definition" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="sp_helpdiagrams_Result">
+    <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+    <Property Type="Int32" Name="OwnerID" Nullable="false" />
+  </ComplexType>
+</Schema>

@@ -1,0 +1,162 @@
+﻿@model List<project.Models.movie>
+@{
+    ViewBag.Title = "Product";
+}
+
+@Html.Partial("_header")
+
+<style>
+    body {
+        padding-top: 0px !important;
+        padding-bottom: 0px !important;
+    }
+
+    .un-style {
+        text-decoration: none;
+        list-style: none;
+    }
+
+    ul {
+        list-style: none;
+    }
+
+    .pd-top-10 {
+        padding-top: 10px;
+    }
+
+    .pd-left-10 {
+        padding-left: 10px;
+    }
+
+    .pd-right-10 {
+        padding-right: 10px;
+    }
+
+    .pd-bottom-10 {
+        padding-bottom: 10px;
+    }
+
+    .mg-top-10 {
+        margin-top: 10px;
+    }
+
+    .mg-left-10 {
+        margin-left: 10px;
+    }
+
+    .mg-right-10 {
+        margin-right: 10px;
+    }
+
+    .mg-bottom-10 {
+        margin-bottom: 10px;
+    }
+
+    .pd {
+        padding: 20px;
+    }
+
+    .black {
+        color: black;
+    }
+
+    .b-black {
+        background-color: black;
+    }
+
+    .white {
+        color: white;
+    }
+
+    .size {
+        font-size: 20px;
+    }
+
+    .next-icon-10rem {
+        width: 10rem !important;
+        height: 10rem !important;
+    }
+
+    #nav li {
+        position: relative;
+        /* display: inline-block; */
+    }
+
+    #nav, .subnav {
+        list-style: none;
+    }
+
+        #nav li:hover .subnav {
+            display: block;
+        }
+
+        #nav .subnav {
+            display: none;
+            min-width: 150px;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: #fff;
+            color: black;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+        }
+
+            #nav .subnav a {
+                line-height: 38px;
+                color: black;
+                padding: 12px;
+            }
+
+            #nav .subnav li:hover {
+                color: #000;
+                background-color: #ccc;
+                display: block;
+            }
+</style>
+
+<div style="padding-left:20px">
+<button type="button" class="btn btn-info mb-2" >
+    <a style=" text-decoration: none !important;
+    list-style: none !important;color:white !important" href="@Url.Action("AddProduct","Admin")"><i class="fa fa-sign-out"></i> Add new </a>
+</button>
+<button type="button" class="btn btn-info mb-2" >
+    <a style=" text-decoration: none !important;
+    list-style: none !important;color:white !important" href="@Url.Action("Customer","Admin")"><i class="fa fa-sign-out"></i>Customer Detail</a>
+</button>
+</div>
+
+<table class="table">
+
+
+    <thead>
+        <tr>
+            <th scope="col">ID</th>
+            <th scope="col" style="width:130px">Name Movie </th>
+            <th scope="col" style="width:100px">ReleaseDate</th>
+            <th scope="col">Movie Price</th>
+            <th scope="col">Movie Des</th>
+            <th scope="col">Img Movie</th>
+        </tr>
+    </thead>
+
+    @foreach (var iteam in Model)
+    {
+        <tr>
+            <td scope="row">@iteam.ID</td>
+            <td>@iteam.name</td>
+            <td>@iteam.releaseDate</td>
+            <td>$@iteam.price</td>
+            <td>@iteam.des</td>
+            <td> <img style="width:100px; height:150px" src="~/Content/img/@iteam.imgMovie" /> </td>
+            <td>
+                <a class="btn btn-info mb-2" href="~/Admin/ProductDetails/@iteam.ID">Details</a> |
+                <a class="btn btn-warning mb-2" href="~/Admin/ProductDelete/@iteam.ID">Delete</a> |
+                <a class="btn btn-primary mb-2" href="~/Admin/EditProduct/@iteam.ID">Edit</a>
+            </td>
+        </tr>
+
+    }
+
+
+</table>
+

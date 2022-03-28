@@ -1,0 +1,153 @@
+﻿@model List<lab_03.Models.ItemCart>
+
+
+@{
+    Layout = "~/Views/shared/CustomLayout.cshtml";
+}
+<div class="header-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8">
+                <div class="user-menu">
+                    <ul>
+
+                        <li><a href="#"><i class="fa fa-heart"></i> Wishlist</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="header-right">
+                    <ul class="list-unstyled list-inline">
+                        <li class="dropdown dropdown-small">
+                            <a data-toggle="dropdown" data-hover="dropdown" class="dropdown-toggle" href="#"><span class="key">currency :</span><span class="value">USD </span><b class="caret"></b></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#">USD</a></li>
+                                <li><a href="#">INR</a></li>
+                                <li><a href="#">GBP</a></li>
+                            </ul>
+                        </li>
+
+                        <li class="dropdown dropdown-small">
+                            <a data-toggle="dropdown" data-hover="dropdown" class="dropdown-toggle" href="#">
+                                <span class="key fa fa-user "> @Session["email"].ToString()</span>
+                                <span class="value"></span><b class="caret"></b>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a href="@Url.Action("Logout","Account")"><i class="fa fa-sign-out"></i> LogOut</a></li>
+                                <li><a href="#"><i class="fa fa-user"></i> My Account</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="single-product-area">
+    <div class="zigzag-bottom"></div>
+    <div class="container" style="align-items: center;display: flex; justify-content: center;">
+        <div class="row" style="display: flex;justify-content: center;">
+            <div class="col-md-8 center">
+                <div class="product-content-right">
+                    <div class="woocommerce">
+                        <h1>Your sessionId: @Session["email"].ToString()</h1>
+                        <form method="post" action="#">
+                            <table cellspacing="0" class="shop_table cart">
+                                <thead>
+                                    <tr>
+                                        <th class="product-remove">Remove&nbsp;</th>
+                                        <th class="product-thumbnail">Img&nbsp;</th>
+                                        <th class="product-name">Product</th>
+                                        <th class="product-price">Price</th>
+                                        <th class="product-quantity">Quantity</th>
+                                        <th class="product-subtotal">Total</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+                                    @foreach (var item in Model)
+                                    {
+
+                                        <tr class="cart_item">
+                                            <td class="product-remove">
+                                                <a title="Remove this item" class="remove" href="#">×</a>
+                                            </td>
+
+                                            <td class="product-thumbnail">
+                                                <a href="single-product.html">
+                                                    <img width="145" height="145" alt="poster_1_up"
+                                                         class="shop_thumbnail"
+                                                         src="~/Content/img/@item.movie.imgMovie">
+
+                                                </a>
+                                            </td>
+
+                                            <td class="product-name">
+                                                <a href="single-product.html">@item.movie.name</a>
+                                            </td>
+
+                                            <td class="product-price">
+                                                <span class="amount">£@item.movie.price </span>
+                                            </td>
+
+                                            <td class="product-quantity">
+                                                <div class="quantity buttons_added">
+                                                    <input type="number" value="@item.Quantity">
+                                                </div>
+                                            </td>
+
+                                            <td class="product-subtotal">
+                                                <span class="amount">£@item.LineTotal</span>
+                                            </td>
+                                        </tr>
+                                    }
+                                    @using (Html.BeginForm("CheckOut", "Cart", FormMethod.Post))
+                                    {
+                                        @*
+                                            <tr>
+                                                <td>
+                                                    <input type="text"  name="CodeCus" >
+                                                </td>
+                                            </tr>
+                                        *@
+                                        <tr>
+                                            <td class="actions" colspan="6">
+                                                <input type="submit" value="Checkout" class="checkout-button button alt wc-forward">
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </form>
+
+                        <div class="cart-collaterals" style=" align-items: center;display: flex;justify-content: center;">
+
+                            <div class="cart_totals ">
+                                <h2>Cart Totals</h2>
+
+                                <table cellspacing="0">
+                                    <tbody>
+                                        <tr class="cart-subtotal">
+                                            <th>Cart Subtotal</th>
+                                            <td><span class="amount">£ @ViewBag.Total</span></td>
+                                        </tr>
+
+                                        <tr class="shipping">
+                                            <th>Shipping and Handling</th>
+                                            <td>Free Shipping</td>
+                                        </tr>
+
+                                       
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <button><a href="~/Home/Index">Back To Home</a></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,63 @@
+﻿@model project.Models.movie
+@{
+    /**/
+
+    ViewBag.Title = "AddProduct";
+}
+
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+<link rel="stylesheet" href="./style.css">
+<link rel="stylesheet" href="fontawesome-free-6.0.0-web/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="fontawesome-free-5.15.4-web/css/all.min.css">
+<link rel="stylesheet" href="~/Content/styleMain.css">
+
+@using (Html.BeginForm("UpdateProduct", "Admin", FormMethod.Post))
+{
+    <div class="d-flex flex-column justify-content-center align-items-center ">
+
+        <img style="width: 300px; height: 40px;" src="~/Content/img/galaxy-logo.png" alt="" />
+
+        <label for="" class="form-label">ID Movie</label>
+        @Html.TextBoxFor(m => m.ID, new { @class = "form-control", @type = "text" })
+
+        <label for="" class="form-label">Name Movie</label>
+        @Html.TextBoxFor(m => m.name, new { @class = "form-control", @type = "text" })
+
+        <label for="" class="form-label">releaseDate</label>
+        @Html.TextBoxFor(m => m.releaseDate, new { @class = "form-control", @type = "text" })
+
+        <label for="" class="form-label">Price Movie</label>
+        @Html.TextBoxFor(m => m.price, new { @class = "form-control", @type = "number" })
+
+        <label for="" class="form-label">Img Movie</label>
+        @Html.TextBoxFor(m => m.imgMovie, new { @class = "form-control", @type = "text" })
+
+        <label for="" class="form-label">Des Moive</label>
+        @Html.TextAreaFor(m => m.des, new { @class = "form-control", @type = "text" })
+
+        <label for="exampleInputEmail1" class="form-label">Choose a Adress: </label>
+        @Html.DropDownListFor(m=>m.address,
+                new SelectList(ViewBag.addresses, "ID", "aName"),
+                new { @class = "form-control"})
+
+        <label for="exampleInputEmail1" class="form-label">Choose a Cinemar: </label>
+        @Html.DropDownListFor(m=>m.cinemar,
+                new SelectList(ViewBag.cinemars, "ID", "cName"),
+                new { @class = "form-control"})
+
+
+        <div style="margin-top:20px">
+            <button type="submit" class="btn btn-primary mb-2">Submit</button>
+
+            <button type="button" class="btn btn-info mb-2" style="margin-left:20px">
+                <a style=" text-decoration: none !important;
+    list-style: none !important;color:white !important" href="@Url.Action("Products","Admin")"><i class="fa fa-sign-out"></i>Back</a>
+            </button>
+        </div>
+    </div>
+}
